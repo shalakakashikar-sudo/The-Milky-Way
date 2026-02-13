@@ -14,7 +14,42 @@ const WITTY_COMMENTS = [
   "Moo-ve over, Shakespeare!",
   "That was a hoof-tastic choice!",
   "I'm not just a cow, I'm a scholar!",
-  "Have you heard about the cow who could write? She was remarkable!"
+  "Have you heard about the cow who could write? She was remarkable!",
+  "The Present Perfect is like a fresh bucket of milk—started in the past, still good now!",
+  "Simple Past is for yesterday's hay. It's finished and gone!",
+  "I'll be eating grass in the Future Continuous. Care to join?",
+  "Stative verbs? I *know* you can handle them. No '-ing' allowed for 'know', dear!",
+  "If I had known you'd be this good, I would have brought extra clover!",
+  "A tense a day keeps the confusion away. Or is it an apple? I prefer grass.",
+  "Don't have a cow over 'had had'. It's just the Past Perfect!",
+  "I am teaching, you are learning. That's the Present Continuous in action!",
+  "The Future Perfect: by the time you finish this, you will have mastered tenses!",
+  "Since vs For? Since my first 'moo', I've for-seen your success!",
+  "I had been chewing cud for hours when you arrived. Ah, Past Perfect Continuous!",
+  "Verb forms are the building blocks of the Milky Way!",
+  "Regular or irregular? Just like my spots, every verb has its place.",
+  "Dr. Moo's diagnosis: You have a healthy grasp of the Present Tense!",
+  "Time flies when you're having fun with grammar. Or should I say, 'Time mooo-ves'?",
+  "Is 'will' a promise or a prediction? In your case, it's a promise of greatness!",
+  "The Historical Present makes past events feel like they're happening right at the barn door.",
+  "Don't let 'been' be your 'end'. It's just a participle!",
+  "Conditionals are like fences—they tell us what happens if you jump over them!",
+  "Your progress is not just simple; it's perfect!",
+  "The Present Perfect Continuous: I have been mooing since sunrise!",
+  "Yesterday is history, tomorrow is a mystery, but today is the Present Tense!",
+  "Past Tense: I grazed. Present Tense: I graze. Future Tense: I will graze. Life is simple!",
+  "When in doubt, think: Is the work done (Perfect) or still doing (Continuous)?",
+  "I would go to the moon, but I prefer the Milky Way!",
+  "Grammar is the grass of the mind. Keep grazing!",
+  "A verb without a tense is like a cow without a field—lost!",
+  "Helping verbs are like farmhands—they do the heavy lifting for the main verb!",
+  "Structure is key! S+V+O is the backbone of the barn.",
+  "If you study hard, you will pass. That's a Type 1 conditional, and a fact!",
+  "The Past Continuous is for all those 'I was doing something' moments!",
+  "Don't worry about 'shall'. 'Will' is the future of the future!",
+  "Present Perfect: Have you finished your milk yet?",
+  "I've seen the future, and your grammar is impeccable!",
+  "Past, Present, or Future? As a time-traveler, I say: Why not all three?"
 ];
 
 type Expression = 'neutral' | 'happy' | 'excited' | 'cool' | 'smart' | 'love' | 'confused' | 'wink' | 'sleepy';
@@ -106,8 +141,22 @@ export const Mascot: React.FC<MascotProps> = ({ externalMessage }) => {
     shadow: "#E6D6C8",   // Warm shadow
     pink: "#FFB6C1",     // Soft pink for ears/nose
     gold: "#FFD700",
-    ribbon: "#FF5252"
+    silver: "#B0BEC5",   // Stethoscope color
+    darkGrey: "#37474F", // Stethoscope tube
+    petalPink: "#FF85A1",
+    petalYellow: "#FFEB3B"
   };
+
+  // Flower Component Helper for SVG
+  const Flower = ({ x, y, size = 1 }: { x: number, y: number, size?: number }) => (
+    <g transform={`translate(${x}, ${y}) scale(${size})`}>
+      <circle cx="0" cy="-3" r="2.5" fill={c.petalPink} />
+      <circle cx="3" cy="0" r="2.5" fill={c.petalPink} />
+      <circle cx="0" cy="3" r="2.5" fill={c.petalPink} />
+      <circle cx="-3" cy="0" r="2.5" fill={c.petalPink} />
+      <circle cx="0" cy="0" r="2" fill={c.gold} />
+    </g>
+  );
 
   return (
     <div 
@@ -190,6 +239,13 @@ export const Mascot: React.FC<MascotProps> = ({ externalMessage }) => {
 
             {/* --- Expressions / Eyes --- */}
             <g transform={`translate(${expression === 'neutral' || expression === 'excited' ? mousePos.x : 0}, ${expression === 'neutral' || expression === 'excited' ? mousePos.y : 0})`}>
+              {/* Left Eyelashes */}
+              <g transform="translate(75, 85)" opacity={expression === 'wink' || expression === 'sleepy' || isBlinking ? 0.3 : 1}>
+                <path d="M-22,-15 Q-28,-22 -32,-18" fill="none" stroke={c.darkChoc} strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M-18,-20 Q-22,-30 -28,-25" fill="none" stroke={c.darkChoc} strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M-10,-22 Q-10,-32 -15,-30" fill="none" stroke={c.darkChoc} strokeWidth="1.5" strokeLinecap="round" />
+              </g>
+
               {expression === 'wink' || expression === 'sleepy' || isBlinking ? (
                 <path d="M60 85 Q 75 95 90 85" fill="none" stroke={c.darkChoc} strokeWidth="4" strokeLinecap="round" />
               ) : expression === 'happy' ? (
@@ -208,6 +264,13 @@ export const Mascot: React.FC<MascotProps> = ({ externalMessage }) => {
             </g>
 
             <g transform={`translate(${expression === 'neutral' || expression === 'excited' ? mousePos.x : 0}, ${expression === 'neutral' || expression === 'excited' ? mousePos.y : 0})`}>
+              {/* Right Eyelashes */}
+              <g transform="translate(125, 85)" opacity={expression === 'sleepy' || isBlinking ? 0.3 : 1}>
+                <path d="M22,-15 Q28,-22 32,-18" fill="none" stroke={c.darkChoc} strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M18,-20 Q22,-30 28,-25" fill="none" stroke={c.darkChoc} strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M10,-22 Q10,-32 15,-30" fill="none" stroke={c.darkChoc} strokeWidth="1.5" strokeLinecap="round" />
+              </g>
+
               {expression === 'sleepy' || isBlinking ? (
                  <path d="M110 85 Q 125 95 140 85" fill="none" stroke={c.darkChoc} strokeWidth="4" strokeLinecap="round" />
               ) : expression === 'happy' || expression === 'wink' ? (
@@ -257,23 +320,39 @@ export const Mascot: React.FC<MascotProps> = ({ externalMessage }) => {
               strokeLinecap="round" 
             />
 
-            <g transform="translate(0, 135)">
-               <circle cx="60" cy="5" r="6" fill="#FFA726" stroke="#E65100" strokeWidth="1"/>
-               <circle cx="140" cy="5" r="6" fill="#FFA726" stroke="#E65100" strokeWidth="1"/>
-               <circle cx="80" cy="10" r="7" fill="white" stroke="#FBC02D" strokeWidth="1"/>
-               <circle cx="80" cy="10" r="2" fill="#FBC02D" />
-               <circle cx="120" cy="10" r="7" fill="white" stroke="#FBC02D" strokeWidth="1"/>
-               <circle cx="120" cy="10" r="2" fill="#FBC02D" />
-               <circle cx="100" cy="15" r="8" fill="#FF7043" stroke="#BF360C" strokeWidth="1"/>
-               <circle cx="100" cy="15" r="2" fill="#FFE082" />
-            </g>
+            {/* --- Stethoscope (Medical Professional Upgrade) --- */}
+            {/* The binaural part around neck */}
+            <path 
+              d="M70 142 Q 100 165 130 142" 
+              fill="none" 
+              stroke={c.darkGrey} 
+              strokeWidth="6" 
+              strokeLinecap="round" 
+            />
+            {/* The tube connecting to chest piece */}
+            <path 
+              d="M100 158 L 100 178" 
+              fill="none" 
+              stroke={c.darkGrey} 
+              strokeWidth="4" 
+              strokeLinecap="round" 
+            />
 
-            <path d="M85 145 Q 100 155 115 145" fill="none" stroke={c.ribbon} strokeWidth="4" />
-            <path d="M100 150 L 90 170 L 100 160 L 110 170 Z" fill={c.ribbon} />
+            {/* Floral decorations blooming from stethoscope belt/tubes */}
+            <Flower x={75} y={145} size={0.7} />
+            <Flower x={88} y={154} size={0.6} />
+            <Flower x={112} y={154} size={0.5} />
+            <Flower x={125} y={145} size={0.8} />
+            <Flower x={104} y={168} size={0.6} />
 
-            <g transform="translate(100, 165)">
-               <path d="M-10 0 Q 0 -5 10 0 L 12 15 Q 0 20 -12 15 Z" fill={c.gold} stroke={c.darkChoc} strokeWidth="1.5" />
-               <circle cx="0" cy="18" r="3" fill="#B8860B" />
+            {/* Chest Piece */}
+            <g transform="translate(100, 188)">
+               <circle r="14" fill={c.silver} stroke={c.darkChoc} strokeWidth="2" />
+               <circle r="10" fill="white" opacity="0.4" />
+               <circle r="6" fill={c.silver} stroke={c.darkChoc} strokeWidth="1.5" />
+               
+               {/* Tiny flower on chest piece center */}
+               <Flower x={0} y={0} size={0.5} />
             </g>
           </g>
         </svg>

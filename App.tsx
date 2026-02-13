@@ -88,11 +88,12 @@ const App: React.FC = () => {
       {currentPage === 'module-detail' && selectedModule && (
         <ModuleDetail 
           module={selectedModule} 
-          onNext={handleNextModule}
-          onPrev={handlePrevModule}
+          onNextModule={handleNextModule}
+          onPrevModule={handlePrevModule}
           onStartQuiz={() => navigateTo('module-quiz')}
-          hasPrev={modules.findIndex(m => m.id === selectedModule.id) > 0}
-          hasNext={modules.findIndex(m => m.id === selectedModule.id) < modules.length - 1}
+          onBackToModules={() => navigateTo('modules')}
+          hasPrevModule={modules.findIndex(m => m.id === selectedModule.id) > 0}
+          hasNextModule={modules.findIndex(m => m.id === selectedModule.id) < modules.length - 1}
         />
       )}
 
