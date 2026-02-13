@@ -9,7 +9,7 @@ export interface Module {
 export interface Section {
   title: string;
   content: string | string[];
-  type?: 'text' | 'list' | 'table' | 'formula';
+  type?: 'text' | 'list' | 'table' | 'formula' | 'note' | 'grid';
   data?: any;
 }
 
