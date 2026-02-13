@@ -5,9 +5,9 @@ import { LandingPage } from './pages/LandingPage';
 import { ModulesPage } from './pages/ModulesPage';
 import { ModuleDetail } from './pages/ModuleDetail';
 import { QuizPage } from './pages/QuizPage';
+import { GrandQuizFlow } from './pages/GrandQuizFlow';
 import { modules } from './data/modules';
 import { moduleQuizzes } from './data/quizzes/moduleQuizzes';
-import { quiz8 } from './data/quizzes/quiz8';
 import { Module } from './types';
 
 const App: React.FC = () => {
@@ -55,23 +55,6 @@ const App: React.FC = () => {
 
   const currentQuiz = selectedModule ? moduleQuizzes.find(q => q.moduleId === selectedModule.id) : null;
 
-  // Combining grand quiz questions with Module 8 questions
-  const grandQuizQuestions = [
-    {
-      question: "Which tense emphasizes the duration of an ongoing action starting from the past?",
-      options: ["Simple Present", "Present Perfect", "Present Perfect Continuous", "Simple Past"],
-      correctAnswer: 2,
-      explanation: "Present Perfect Continuous (S + have/has + been + V4) focuses on how long an action has been happening."
-    },
-    {
-      question: "When do we use 'since' vs 'for'?",
-      options: ["Since for duration, For for starting point", "Both for duration", "Since for starting point, For for duration", "No difference"],
-      correctAnswer: 2,
-      explanation: "Since 2020 (point), For 5 years (duration)."
-    },
-    ...quiz8.questions // Adding mastery questions from module 8
-  ];
-
   return (
     <Layout onNavigate={navigateTo} mascotMessage={mascotMessage}>
       {currentPage === 'landing' && (
@@ -117,11 +100,9 @@ const App: React.FC = () => {
       )}
 
       {currentPage === 'grand-quiz' && (
-        <QuizPage 
-          title="The Grand Milky Way Quiz"
-          questions={grandQuizQuestions}
+        <GrandQuizFlow 
           onComplete={(score) => {
-            setMascotMessage(`Grand Quiz complete! You're a legend-dairy master of tenses!`);
+            setMascotMessage(`Grand Quiz complete! You scored ${score}! You're a legend-dairy master of tenses!`);
             navigateTo('landing');
           }}
           onExit={() => navigateTo('landing')}
