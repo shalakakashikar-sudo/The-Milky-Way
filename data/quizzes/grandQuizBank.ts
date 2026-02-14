@@ -1,8 +1,5 @@
-
 import { QuizQuestion } from '../../types';
 
-// Simulating a huge bank with 100+ high-quality questions for now
-// In a real environment, this could reach 200 by adding more variations.
 export const grandQuizBank: QuizQuestion[] = [
   {
     question: "Which tense is used for universal truths like 'Water boils at 100 degrees'?",
@@ -335,63 +332,27 @@ export const grandQuizBank: QuizQuestion[] = [
     explanation: "Past Perfect for an action finished before another action (arrived)."
   },
   {
-    question: "Do you have the 'milk' to pass? Choose the correct tense: 'I ___ my homework tomorrow.'",
-    options: ["finished", "will finish", "have finished", "finish"],
-    correctAnswer: 1,
-    explanation: "Simple Future for planned actions."
-  },
-  {
-    question: "Which modal is often used for instant decisions?",
-    options: ["Going to", "Shall", "Will", "Might"],
-    correctAnswer: 2,
-    explanation: "Will is typically used for instant decisions, e.g., 'I'll have the steak'."
-  },
-  {
-    question: "If I ___ more time, I would have traveled more.",
-    options: ["have", "had", "had had", "will have"],
-    correctAnswer: 2,
-    explanation: "Type 3 Conditional: If + Past Perfect (had had)."
-  },
-  {
-    question: "Identify the tense: 'The sun had set by 6 PM.'",
-    options: ["Simple Past", "Past Perfect", "Past Continuous", "Present Perfect"],
-    correctAnswer: 1,
-    explanation: "Had + V3 = Past Perfect."
-  },
-  {
-    question: "We ___ (wait) for the bus for 30 minutes before it came.",
-    options: ["were waiting", "had been waiting", "have been waiting", "waited"],
-    correctAnswer: 1,
-    explanation: "Past Perfect Continuous for duration before a past point."
-  },
-  {
-    question: "Which tense uses am/is/are + V4?",
-    options: ["Present Simple", "Present Continuous", "Present Perfect", "Present Perfect Continuous"],
-    correctAnswer: 1,
-    explanation: "Present Continuous."
-  },
-  {
-    question: "The cattle ___ (graze) in the fields yesterday.",
-    options: ["graze", "grazes", "grazed", "have grazed"],
-    correctAnswer: 2,
-    explanation: "Simple Past for yesterday."
-  },
-  {
-    question: "I ___ (know) him for many years.",
-    options: ["am knowing", "have known", "have been knowing", "know"],
-    correctAnswer: 1,
-    explanation: "'Know' is a stative verb; use Present Perfect for duration."
-  },
-  {
-    question: "If you ___ ice, it turns into water.",
-    options: ["heat", "heated", "will heat", "had heated"],
+    question: "What is the 'Cheat Sheet' rule for calculating total English tenses?",
+    options: ["3 Times x 4 Aspects", "4 Times x 3 Aspects", "12 Times x 1 Aspect", "It's all random!"],
     correctAnswer: 0,
-    explanation: "Type 0 Conditional for scientific facts."
+    explanation: "Exactly! 3 time frames (Past, Present, Future) multiplied by 4 aspects (Simple, Continuous, Perfect, Perfect Continuous) equals 12 tenses."
   },
   {
-    question: "Which of these is NOT a tense?",
+    question: "Which of these is NOT a legitimate tense name?",
     options: ["Simple Past", "Present Perfect", "Future Past", "Future Continuous"],
     correctAnswer: 2,
-    explanation: "There is 'Future in the Past' but not just 'Future Past' as a standard tense name."
+    explanation: "There is 'Future in the Past' as a concept, but 'Future Past' is not a standard tense name."
+  },
+  {
+    question: "By the time you arrive, I ____ (finish) my work.",
+    options: ["finished", "will finish", "will have finished", "am finishing"],
+    correctAnswer: 2,
+    explanation: "Future Perfect is used for actions that will be completed before another future event."
+  },
+  {
+    question: "If it ____ (rain) tomorrow, we will cancel.",
+    options: ["rains", "will rain", "rained", "has rained"],
+    correctAnswer: 0,
+    explanation: "In Type 1 Conditionals, the 'if' clause uses Simple Present for future possibilities."
   }
 ];

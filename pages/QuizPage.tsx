@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { QuizQuestion } from '../types';
 import { Button } from '../components/Button';
@@ -117,8 +116,8 @@ export const QuizPage: React.FC<QuizPageProps> = ({ title, questions, onComplete
         <div className="bg-white rounded-[2rem] p-8 shadow-creamy border-4 border-[#3D2B1F] text-center">
           <div className="text-4xl mb-4">🎯</div>
           <h2 className="text-xl md:text-2xl font-black text-[#3D2B1F] uppercase tracking-tighter mb-6">{title} Setup</h2>
-          <div className="grid grid-cols-3 gap-3 mb-8">
-            {[5, 10, 20, 30, 40, 50].map(n => (
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-3 mb-8">
+            {[5, 10, 20, 30, 40, 50, 75, 100].map(n => (
               <button
                 key={n}
                 onClick={() => setTargetCount(n)}

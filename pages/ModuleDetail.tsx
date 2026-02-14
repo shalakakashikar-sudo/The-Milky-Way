@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { Module, Section } from '../types';
 import { Button } from '../components/Button';
+import { moduleQuizzes } from '../data/quizzes/moduleQuizzes';
 
 interface ModuleDetailProps {
   module: Module;
@@ -19,6 +19,7 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
   const [activeSectionIdx, setActiveSectionIdx] = useState(0);
   const totalSections = module.sections.length;
   const progress = ((activeSectionIdx + 1) / totalSections) * 100;
+  const hasQuiz = moduleQuizzes.some(q => q.moduleId === module.id);
 
   useEffect(() => {
     setActiveSectionIdx(0);
@@ -45,7 +46,7 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
         e.preventDefault();
         if (activeSectionIdx < totalSections - 1) {
           nextSection();
-        } else {
+        } else if (hasQuiz) {
           onStartQuiz();
         }
       }
@@ -59,7 +60,7 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeSectionIdx, totalSections, onStartQuiz]);
+  }, [activeSectionIdx, totalSections, onStartQuiz, hasQuiz]);
 
   const renderSectionContent = (section: Section) => {
     switch (section.type) {
@@ -99,12 +100,19 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
                   <div className="space-y-2">
                     <p className="text-sm text-[#5D4037] font-semibold leading-tight">{item.description}</p>
                     {item.details && (
-                       <ul className="grid grid-cols-1 gap-1 pt-2 border-t border-pink-50">
-                         {item.details.map((d: string, j: number) => (
-                           <li key={j} className="flex gap-2 items-center text-[10px] font-black text-[#FF1493] uppercase tracking-wider">
-                             <span className="w-1 h-1 rounded-full bg-[#FF1493]"></span> {d}
-                           </li>
-                         ))}
+                       <ul className="grid grid-cols-1 gap-1.5 pt-2 border-t border-pink-50">
+                         {item.details.map((d: string, j: number) => {
+                           const isWrong = d.includes('✗');
+                           const isRight = d.includes('✓');
+                           const colorClass = isWrong ? 'text-red-500' : isRight ? 'text-green-600' : 'text-[#5D4037]';
+                           
+                           return (
+                             <li key={j} className={`flex gap-2 items-start text-xs md:text-sm font-bold ${colorClass}`}>
+                               {!isWrong && !isRight && <span className="w-1 h-1 rounded-full bg-pink-200 mt-2 shrink-0"></span>}
+                               <span>{d}</span>
+                             </li>
+                           );
+                         })}
                        </ul>
                     )}
                   </div>
@@ -118,14 +126,48 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
         if (Array.isArray(section.content)) {
           return (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-2">
-              {section.content.map((item, sidx) => (
-                <div key={sidx} className="flex items-center gap-4 p-5 md:p-6 bg-white rounded-xl border border-pink-50 hover:border-[#FF1493] transition-all group">
-                  <div className="shrink-0 w-10 h-10 rounded-lg bg-pink-50 flex items-center justify-center text-pink-600 font-black text-lg group-hover:bg-[#FF1493] group-hover:text-white transition-colors">
-                    {sidx + 1}
+              {section.content.map((item, sidx) => {
+                const hasArrow = item.includes('→');
+                const hasWrong = item.includes('✗');
+                const hasRight = item.includes('✓');
+
+                if (hasArrow && hasWrong && hasRight) {
+                  const [main, explanation] = item.split('|').map(p => p.trim());
+                  const parts = main.split('→').map(p => p.trim());
+                  return (
+                    <div key={sidx} className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-[2rem] border border-pink-50 hover:border-[#FF1493] transition-all group shadow-sm">
+                      <div className="shrink-0 w-8 h-8 rounded-lg bg-pink-50 flex items-center justify-center text-[#FF1493] font-black text-sm group-hover:bg-[#FF1493] group-hover:text-white transition-colors mt-1">
+                        {sidx + 1}
+                      </div>
+                      <div className="flex flex-col gap-2 flex-grow">
+                        <div className="bg-red-50/40 p-3 rounded-xl border border-red-100/50 flex items-start gap-3">
+                           <span className="text-red-500 text-xl font-black mt-0.5">✗</span>
+                           <span className="text-red-700 font-bold text-base md:text-lg leading-tight">{parts[0].replace('✗', '').trim()}</span>
+                        </div>
+                        <div className="bg-green-50/40 p-3 rounded-xl border border-green-100/50 flex items-start gap-3">
+                           <span className="text-green-500 text-xl font-black mt-0.5">✓</span>
+                           <span className="text-green-700 font-bold text-base md:text-lg leading-tight">{parts[1].replace('✓', '').trim()}</span>
+                        </div>
+                        {explanation && (
+                          <div className="mt-1 p-3 bg-amber-50/50 rounded-xl border border-dashed border-amber-200 text-xs md:text-sm text-[#5D4037] font-medium italic animate-in fade-in slide-in-from-top-1">
+                             <span className="font-black text-amber-600 uppercase text-[9px] mr-2 not-italic">Why?</span>
+                             {explanation}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div key={sidx} className="flex items-center gap-4 p-5 md:p-6 bg-white rounded-[2rem] border border-pink-50 hover:border-[#FF1493] transition-all group shadow-sm">
+                    <div className="shrink-0 w-10 h-10 rounded-lg bg-pink-50 flex items-center justify-center text-[#FF1493] font-black text-lg group-hover:bg-[#FF1493] group-hover:text-white transition-colors">
+                      {sidx + 1}
+                    </div>
+                    <span className="text-[#3D2B1F] font-bold text-lg md:text-xl leading-tight">{item}</span>
                   </div>
-                  <span className="text-[#3D2B1F] font-bold text-lg md:text-xl leading-tight">{item}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           );
         }
@@ -184,7 +226,6 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
 
   return (
     <div className="min-h-screen bg-[#FFFAF3] pb-10">
-      {/* Navigation Header - Tightened vertical spacing */}
       <div className="sticky top-11 z-40 w-full milk-glass border-b border-[#FFB6C1]/20 py-2 px-4 md:px-8 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 shrink-0">
@@ -199,7 +240,11 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
              <p className="text-[9px] font-black text-[#FF1493] uppercase tracking-widest mt-1">{activeSectionIdx + 1} / {totalSections}</p>
           </div>
 
-          <button onClick={onStartQuiz} className="bg-[#FF1493] text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-strawberry hover:scale-105 active:scale-95 transition-all">START QUIZ ⚡</button>
+          {hasQuiz ? (
+            <button onClick={onStartQuiz} className="bg-[#FF1493] text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-strawberry hover:scale-105 active:scale-95 transition-all">START QUIZ ⚡</button>
+          ) : (
+            <div className="w-[100px]"></div>
+          )}
         </div>
       </div>
 
@@ -210,7 +255,6 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
             <h1 className="text-3xl md:text-6xl font-black text-[#2D1B0E] uppercase tracking-tighter leading-none italic drop-shadow-sm">{currentSection.title}</h1>
           </div>
 
-          {/* Wider Content Card with optimized padding */}
           <div className="bg-white/60 rounded-[2.5rem] p-4 md:p-10 border-2 border-white/80 min-h-[400px] flex flex-col justify-center shadow-creamy backdrop-blur-sm w-full">
             {renderSectionContent(currentSection)}
           </div>
@@ -220,8 +264,10 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
             
             {activeSectionIdx < totalSections - 1 ? (
               <button onClick={nextSection} className="w-full sm:w-auto px-12 py-3 rounded-2xl bg-[#3D2B1F] text-white font-black text-xs uppercase tracking-widest shadow-xl transition-all hover:bg-black active:scale-95">NEXT (ENTER) →</button>
-            ) : (
+            ) : hasQuiz ? (
               <button onClick={onStartQuiz} className="w-full sm:w-auto px-14 py-4 rounded-2xl bg-[#FF1493] text-white font-black text-sm uppercase tracking-widest shadow-strawberry transition-all hover:bg-[#D01077] active:scale-95">TEST YOUR SKILLS 🚀</button>
+            ) : (
+              <button onClick={onBackToModules} className="w-full sm:w-auto px-14 py-4 rounded-2xl bg-[#3D2B1F] text-white font-black text-sm uppercase tracking-widest shadow-xl transition-all hover:bg-black active:scale-95">FINISH LESSON ✨</button>
             )}
           </div>
         </div>
