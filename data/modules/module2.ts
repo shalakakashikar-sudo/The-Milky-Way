@@ -3,224 +3,155 @@ import { Module } from '../../types';
 export const module2: Module = {
   id: 2,
   title: "BUILDING BLOCKS - Sentence Structure",
-  description: "Master the fundamental patterns and components that form every thought in English.",
+  description: "Master the fundamental patterns, Subject-Verb agreement, and the V1-V4 verb forms that power every sentence.",
   sections: [
     {
-      title: "2.1 THE FUNDAMENTAL PATTERN",
+      title: "2.1 THE S-V-O-R BLUEPRINT",
+      content: "Every standard English thought follows this logical sequence. Master the pattern, master the language.",
+      type: 'text'
+    },
+    {
+      title: "THE FUNDAMENTAL PATTERN",
       content: "SUBJECT + (HELPING VERB) + MAIN VERB + OBJECT + REST",
       type: 'formula'
     },
     {
       title: "BREAKING DOWN THE BLOCK",
-      content: [
-        "SUBJECT: The doer who performs the action or what the sentence is about.",
-        "HELPING VERB: Assists the main verb in showing time (also called Auxiliary).",
-        "MAIN VERB: The action itself (Lexical verb) like 'eat', 'run', or 'think'.",
-        "OBJECT: The receiver of the action (Who or what is affected?).",
-        "REST: Extra info like place (in the park), time (at 5 PM), or manner."
-      ],
-      type: 'list'
-    },
-    {
-      title: "2.2 THE SUBJECT",
-      content: "The subject tells us WHO is performing the action. It can be a name, a pronoun, or a common noun.",
+      content: "Each component has a specific job in conveying your message.",
       type: 'grid',
       data: {
         items: [
           { 
-            label: "NAMES (PROPER)", 
+            label: "SUBJECT (S)", 
             icon: "👤", 
-            description: "Specific people, places, or brands.", 
-            details: ["Ram plays cricket.", "India is a large country.", "Microsoft is a company."] 
+            description: "The 'Hero' or Doer of the action.", 
+            details: ["Can be a Noun (Ram) or Pronoun (He).", "Answers: 'Who or What did it?'"] 
           },
           { 
-            label: "PRONOUNS", 
-            icon: "🆔", 
-            description: "Words that replace nouns.", 
-            details: ["I, We, You, They (Plural/I)", "He, She, It (Singular)"] 
+            label: "HELPING VERB (HV)", 
+            icon: "🛠️", 
+            description: "The 'Time-Keeper' (Auxiliary).", 
+            details: ["Shows the Tense.", "Examples: am, is, was, had, will."] 
           },
           { 
-            label: "COMMON NOUNS", 
-            icon: "🏢", 
-            description: "General names for groups of people or things.", 
-            details: ["The teacher explains.", "My friend arrived.", "Children play."] 
+            label: "MAIN VERB (V)", 
+            icon: "⚡", 
+            description: "The 'Action' itself.", 
+            details: ["The actual task: eat, play, think.", "Changes form (V1-V4) based on tense."] 
+          },
+          { 
+            label: "OBJECT (O)", 
+            icon: "🎯", 
+            description: "The 'Receiver' of the action.", 
+            details: ["The thing being acted upon.", "Answers: 'Whom or What?'"] 
           }
         ]
       }
     },
     {
-      title: "SUBJECT-VERB AGREEMENT",
-      content: "The verb must match the subject in number.",
+      title: "2.2 SUBJECT CATEGORIES",
+      content: "English verbs change based on the 'Person' and 'Number' of the subject.",
       type: 'grid',
       data: {
         items: [
           { 
-            label: "SINGULAR", 
-            description: "He, She, It, Ram.", 
-            details: ["Uses: is, was, has, goes, plays", "✓ He plays cricket."] 
+            label: "1ST PERSON", 
+            icon: "☝️", 
+            description: "The speaker.", 
+            details: ["Singular: I", "Plural: We"] 
           },
           { 
-            label: "PLURAL", 
-            description: "We, You, They.", 
-            details: ["Uses: are, were, have, go, play", "✓ They play cricket."] 
+            label: "2ND PERSON", 
+            icon: "✌️", 
+            description: "The listener.", 
+            details: ["Singular/Plural: You", "Nuance: 'You' always takes plural verbs!"] 
+          },
+          { 
+            label: "3RD PERSON", 
+            icon: "👉", 
+            description: "The person/thing we talk about.", 
+            details: ["Singular: He, She, It, Ram", "Plural: They, The Cows"] 
           }
         ]
       }
     },
     {
-      title: "2.3 HELPING VERBS (AUXILIARIES)",
-      content: "These verbs 'help' the main verb to describe the exact timing of an action.",
-      type: 'grid',
-      data: {
-        items: [
-          { label: "BE FORMS", icon: "🐝", description: "am, is, are, was, were, been, being." },
-          { label: "HAVE FORMS", icon: "👜", description: "has, have, had." },
-          { label: "DO FORMS", icon: "🛠️", description: "do, does, did." },
-          { label: "MODALS", icon: "✨", description: "will, shall, can, could, may, might, must, should." }
-        ]
-      }
-    },
-    {
-      title: "WHEN DO WE USE THEM?",
-      content: [
-        "TO FORM TENSES: 'I am reading' (Continuous), 'She has finished' (Perfect).",
-        "TO FORM NEGATIVES: 'I do not eat meat.' 'They have not arrived.'",
-        "TO FORM QUESTIONS: 'Do you like coffee?' 'Is she your sister?'",
-        "WITH MODALS: Modals are ALWAYS followed by V1. 'I can swim.' 'She will study.'"
-      ],
-      type: 'list'
-    },
-    {
-      title: "DETAILED VERB TABLES",
-      content: "Master the forms of Primary Auxiliaries based on the Subject.",
+      title: "2.3 THE 'BE' FAMILY CHART",
+      content: "The verb 'To Be' is the most used—and most irregular—helping verb in English.",
       type: 'table',
       data: {
-        headers: ["Subject", "BE (Pres/Past)", "HAVE (Pres/Past)", "DO (Pres/Past)"],
+        headers: ["Subject", "Present (Now)", "Past (Then)", "Future (Later)"],
         rows: [
-          ["I", "am / was", "have / had", "do / did"],
-          ["He / She / It", "is / was", "has / had", "does / did"],
-          ["We / You / They", "are / were", "have / had", "do / did"]
+          ["I", "am", "was", "will be"],
+          ["He / She / It / Ram", "is", "was", "will be"],
+          ["We / You / They", "are", "were", "will be"]
         ]
       }
     },
     {
-      title: "2.4 & 2.5 VERB FORMS",
-      content: "Main verbs (Action words) change their shape through 4 primary forms.",
+      title: "2.4 THE 4 FACES OF A VERB (V1-V4)",
+      content: "Main verbs change their shape to match the 'Work' aspect of the tense.",
       type: 'grid',
       data: {
         items: [
           { 
-            label: "V1 (BASE)", 
+            label: "V1 (BASE FORM)", 
             icon: "🌱", 
-            description: "Eat, Play, Go, Write.", 
-            details: ["Simple Present: I eat rice.", "After Modals: I can eat.", "Infinitives: I want to eat."] 
+            description: "Go, Write, Play.", 
+            details: ["Simple Present & Future.", "After Modals (can, will, should).", "Pro-Tip: The 'Root' of the verb."] 
           },
           { 
-            label: "V2 (PAST SIMPLE)", 
+            label: "V2 (PAST FORM)", 
             icon: "🍂", 
-            description: "Ate, Played, Went, Wrote.", 
-            details: ["Simple Past: I ate rice yesterday.", "Used only in Affirmative Past."] 
+            description: "Went, Wrote, Played.", 
+            details: ["ONLY for Simple Past Affirmative.", "Nuance: Disappears when 'Did' is present."] 
           },
           { 
-            label: "V3 (PAST PART.)", 
+            label: "V3 (PARTICIPLE)", 
             icon: "🍎", 
-            description: "Eaten, Played, Gone, Written.", 
-            details: ["Perfect Tenses: I have eaten.", "Passive Voice: Rice is eaten."] 
+            description: "Gone, Written, Played.", 
+            details: ["Used in all Perfect Tenses.", "Used in Passive Voice.", "Pro-Tip: Needs a 'Have/Has' helper."] 
           },
           { 
-            label: "V4 (PRES. PART.)", 
+            label: "V4 (ING FORM)", 
             icon: "🌊", 
-            description: "Eating, Playing, Going.", 
-            details: ["Continuous Tenses: I am eating.", "Perfect Continuous: I have been eating."] 
+            description: "Going, Writing, Playing.", 
+            details: ["Used in all Continuous Tenses.", "Describes actions 'in progress'.", "Pro-Tip: Needs a 'Be' helper."] 
           }
         ]
       }
     },
     {
-      title: "2.6 REGULAR VS IRREGULAR",
-      content: "Verbs are classified by how they form their Past Tense.",
+      title: "2.5 IRREGULAR VERB FAMILIES",
+      content: "Don't just memorize; recognize the families. These verbs don't follow the '-ed' rule.",
       type: 'grid',
       data: {
         items: [
           { 
-            label: "REGULAR", 
-            icon: "📏", 
-            description: "V2 and V3 end in -ed.", 
-            details: ["play - played - played", "work - worked - worked", "clean - cleaned - cleaned"] 
+            label: "THE STABLES (A-A-A)", 
+            icon: "🧱", 
+            description: "All forms stay the same.", 
+            details: ["Cut - Cut - Cut", "Put - Put - Put", "Read - Read - Read (spelling stays, sound changes!)"] 
           },
           { 
-            label: "IRREGULAR A-A-A", 
-            icon: "1️⃣", 
-            description: "All forms are identical.", 
-            details: ["cut - cut - cut", "put - put - put", "hit - hit - hit", "read - read - read"] 
+            label: "THE TWINS (A-B-B)", 
+            icon: "👯", 
+            description: "V2 and V3 are identical.", 
+            details: ["Buy - Bought - Bought", "Teach - Taught - Taught", "Keep - Kept - Kept"] 
           },
           { 
-            label: "IRREGULAR A-B-B", 
-            icon: "2️⃣", 
-            description: "V2 and V3 are the same.", 
-            details: ["buy - bought - bought", "say - said - said", "keep - kept - kept"] 
-          },
-          { 
-            label: "IRREGULAR A-B-C", 
-            icon: "3️⃣", 
-            description: "All forms are different.", 
-            details: ["go - went - gone", "eat - ate - eaten", "write - wrote - written"] 
+            label: "THE TRINITY (A-B-C)", 
+            icon: "🔱", 
+            description: "Every form is different.", 
+            details: ["Go - Went - Gone", "Eat - Ate - Eaten", "Write - Wrote - Written"] 
           }
         ]
       }
     },
     {
-      title: "2.7 THE OBJECT",
-      content: "The object answers the question 'What?' or 'Whom?' after the verb.",
-      type: 'grid',
-      data: {
-        items: [
-          { 
-            label: "DIRECT OBJECT", 
-            description: "Receives the action directly.", 
-            details: ["I wrote a letter. (What? -> a letter)", "She loves her mother. (Whom? -> mother)"] 
-          },
-          { 
-            label: "INDIRECT OBJECT", 
-            description: "Receives the direct object.", 
-            details: ["I gave him a book. (him = indirect)", "She told me a story. (me = indirect)"] 
-          },
-          { 
-            label: "INTRANSITIVE", 
-            description: "Verbs with NO object.", 
-            details: ["The baby is sleeping.", "Birds fly.", "She laughed loudly."] 
-          }
-        ]
-      }
-    },
-    {
-      title: "2.8 FOUR SENTENCE TYPES",
-      content: "There are four ways to structure a sentence in any tense.",
-      type: 'table',
-      data: {
-        headers: ["Type", "Structure", "Example"],
-        rows: [
-          ["AFFIRMATIVE", "S + (HV) + V + O", "She speaks English."],
-          ["NEGATIVE", "S + HV + not + V + O", "She does not speak English."],
-          ["INTERROGATIVE", "HV + S + V + O ?", "Does she speak English?"],
-          ["NEG. INTERROG.", "HV + S + not + V + O ?", "Does she not speak English?"]
-        ]
-      }
-    },
-    {
-      title: "CONTRACTIONS TIP",
-      content: "In Negative Interrogative sentences, we often use contractions: 'Doesn't Ram play cricket?' or 'Hasn't she finished?'",
+      title: "DR. MOO'S BUILDING RULE",
+      content: "You cannot build a house without bricks, and you cannot build a sentence without knowing your V1, V2, and V3. Learn 5 irregular verbs a day—it's udderly vital!",
       type: 'note'
-    },
-    {
-      title: "DR. MOO'S BUILDING RULES",
-      content: [
-        "1. We ALWAYS need a helping verb in negative sentences.",
-        "2. The helping verb comes BEFORE the subject in questions.",
-        "3. Learn 5 irregular verbs a day to master the Milky Way!",
-        "4. Subject + Verb + Object (SVO) is your legend-dairy baseline."
-      ],
-      type: 'list'
     }
   ]
 };

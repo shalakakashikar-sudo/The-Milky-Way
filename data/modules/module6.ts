@@ -9,9 +9,15 @@ export const module6: Module = {
       title: "6.1 SINCE vs FOR - THE GOLDEN RULE",
       content: [
         "SINCE = Starting Point (From when it started).",
-        "FOR = Duration (How long it lasted)."
+        "FOR = Duration (How long it lasted).",
+        "Nuance: 'Since' is almost exclusively used with Perfect Tenses. 'For' can be used with any tense (Simple, Continuous, or Perfect)."
       ],
       type: 'list'
+    },
+    {
+      title: "PRO-TIP: THE 'ALL' EXCEPTION",
+      content: "When using the word 'all' (e.g., all day, all morning), you don't need 'for' or 'since'! | ✗ I have been waiting for all day. → ✓ I have been waiting all day.",
+      type: 'note'
     },
     {
       title: "WHEN TO USE WHICH?",
@@ -23,13 +29,23 @@ export const module6: Module = {
             label: "SINCE (Starting Point)", 
             icon: "📍", 
             description: "Year, Month, Day, Time, or Event.", 
-            details: ["Since 2015", "Since Monday", "Since morning", "Since 9 o'clock", "Since childhood"] 
+            details: [
+              "Since 2015 / Since Monday", 
+              "Since 9 o'clock / Since Breakfast", 
+              "Since childhood / Since I left school",
+              "Nuance: Always answers the question 'From when?'"
+            ] 
           },
           { 
             label: "FOR (Duration)", 
             icon: "📏", 
             description: "Number + Time or General periods.", 
-            details: ["For 2 hours", "For 3 days", "For 5 years", "For a long time", "For ages"] 
+            details: [
+              "For 2 hours / For 3 days", 
+              "For 5 years / For a long time", 
+              "For ages / For centuries",
+              "Nuance: Always answers the question 'How long?'"
+            ] 
           }
         ]
       }
@@ -40,18 +56,34 @@ export const module6: Module = {
       type: 'grid',
       data: {
         items: [
-          { label: "PRESENT", icon: "🌞", description: "Always, usually, now, just, already, yet, for, since." },
-          { label: "PAST", icon: "🕰️", description: "Yesterday, ago, last week, when, while, before, by the time." },
-          { label: "FUTURE", icon: "🚀", description: "Tomorrow, soon, next week, by + time, by the time." }
+          { 
+            label: "PRESENT", 
+            icon: "🌞", 
+            description: "Always, usually, now, just, already, yet, for, since.",
+            details: ["Daily (Simple)", "Right now (Continuous)", "Just/Already (Perfect)", "For/Since (Perf. Continuous)"]
+          },
+          { 
+            label: "PAST", 
+            icon: "🕰️", 
+            description: "Yesterday, ago, last week, when, while, before, by the time.",
+            details: ["Ago (Simple)", "While (Continuous)", "Before (Perfect)", "All morning (Perf. Continuous)"]
+          },
+          { 
+            label: "FUTURE", 
+            icon: "🚀", 
+            description: "Tomorrow, soon, next week, by + time, by the time.",
+            details: ["Soon (Simple)", "At this time tomorrow (Continuous)", "By then (Perfect)"]
+          }
         ]
       }
     },
     {
       title: "6.3 SEQUENCE OF TENSES",
       content: [
-        "Rule: When the main verb is Past, the subordinate verb usually changes to Past.",
+        "Rule: When the main verb (reporting verb) is in the Past, the subordinate verb usually moves one step back into the Past.",
         "Example: She says (Pres) she is (Pres) busy. → She said (Past) she was (Past) busy.",
-        "Exception: Universal truths don't change! 'He said that water boils at 100°C.'"
+        "Logic: This 'Backshift' maintains the logical timeline of the conversation.",
+        "Exception: Universal truths don't change! 'He said that water boils at 100°C.' (Because it still boils at 100°C today!)"
       ],
       type: 'list'
     },
@@ -60,27 +92,32 @@ export const module6: Module = {
       content: "When reporting what someone said, we usually move the tense 'one step back' into the past.",
       type: 'table',
       data: {
-        headers: ["Direct Speech", "Reported Speech"],
+        headers: ["Direct Speech", "Reported Speech", "Nuance"],
         rows: [
-          ["Simple Present", "Simple Past"],
-          ["Present Continuous", "Past Continuous"],
-          ["Present Perfect / Simple Past", "Past Perfect"],
-          ["Will / Can / May", "Would / Could / Might"],
-          ["Must", "Had to"]
+          ["Simple Present", "Simple Past", "Am/Is/Are → Was/Were"],
+          ["Present Continuous", "Past Continuous", "Is eating → Was eating"],
+          ["Present Perfect / Simple Past", "Past Perfect", "Have seen / Saw → Had seen"],
+          ["Will / Can / May", "Would / Could / Might", "Future becomes 'Future in the Past'"],
+          ["Must", "Had to", "Shows external obligation"]
         ]
       }
     },
     {
+      title: "PRO-TIP: SAY vs TELL",
+      content: "Use 'Say' when there is no personal object. Use 'Tell' when you mention the listener! | ✓ He said that he was tired. | ✓ He told ME that he was tired.",
+      type: 'note'
+    },
+    {
       title: "TIME & PLACE CHANGES",
-      content: "Don't forget to change these 'proximity' words when reporting speech!",
+      content: "Don't forget to change these 'proximity' words when reporting speech! Because you are usually in a different place and time when reporting.",
       type: 'table',
       data: {
         headers: ["Direct", "Reported"],
         rows: [
           ["now", "then / at that time"],
           ["today", "that day"],
-          ["tomorrow", "the next day"],
-          ["yesterday", "the day before"],
+          ["tomorrow", "the next day / following day"],
+          ["yesterday", "the day before / previous day"],
           ["ago", "before"],
           ["here / this", "there / that"]
         ]
@@ -88,36 +125,52 @@ export const module6: Module = {
     },
     {
       title: "6.5 CONDITIONAL SENTENCES",
-      content: "Conditionals describe the 'Logic of If'—what happens under certain circumstances.",
+      content: "Conditionals describe the 'Logic of If'—what happens under certain circumstances. They are divided by 'How likely' they are.",
       type: 'grid',
       data: {
         items: [
           { 
             label: "TYPE 0 (Facts)", 
-            description: "Universal Truths.", 
-            details: ["If + Simple Pres, Simple Pres", "If you heat ice, it melts."] 
+            description: "Scientific Laws / Universal Truths.", 
+            details: [
+              "Structure: If + Simple Pres, Simple Pres", 
+              "Example: If you heat ice, it melts.",
+              "Nuance: This happens 100% of the time."
+            ] 
           },
           { 
             label: "TYPE 1 (Possible)", 
             description: "Real Future Possibility.", 
-            details: ["If + Simple Pres, will + V1", "If it rains, I will stay home."] 
+            details: [
+              "Structure: If + Simple Pres, will + V1", 
+              "Example: If it rains, I will stay home.",
+              "Nuance: A likely future situation."
+            ] 
           },
           { 
             label: "TYPE 2 (Unreal)", 
-            description: "Unreal Present/Future.", 
-            details: ["If + Simple Past, would + V1", "If I were rich, I'd buy a farm."] 
+            description: "Imaginary Present/Future.", 
+            details: [
+              "Structure: If + Simple Past, would + V1", 
+              "Example: If I were rich, I'd buy a farm.",
+              "Pro-Tip: Use 'WERE' for all subjects! (If I were, If he were)."
+            ] 
           },
           { 
             label: "TYPE 3 (Regret)", 
-            description: "Unreal Past (Impossible).", 
-            details: ["If + Past Perf, would have + V3", "If I had studied, I would have passed."] 
+            description: "Impossible Past (The Time Machine).", 
+            details: [
+              "Structure: If + Past Perf, would have + V3", 
+              "Example: If I had studied, I would have passed.",
+              "Nuance: You cannot change the past—it's too late!"
+            ] 
           }
         ]
       }
     },
     {
       title: "6.6 ACTIVE & PASSIVE VOICE",
-      content: "Active focuses on the Doer. Passive focuses on the Receiver of the action.",
+      content: "Active focuses on the Doer. Passive focuses on the Receiver of the action. Passive is useful when the doer is unknown or unimportant.",
       type: 'table',
       data: {
         headers: ["Tense", "Active Pattern", "Passive Pattern (Be + V3)"],
@@ -133,12 +186,19 @@ export const module6: Module = {
       }
     },
     {
+      title: "NUANCE: THE BY-PHRASE",
+      content: "In Passive Voice, we only add 'by [agent]' if the doer is necessary for the meaning. | ✓ The window was broken (by the storm). | ✓ The thief was arrested (no need to say 'by police', it's obvious!).",
+      type: 'note'
+    },
+    {
       title: "DR. MOO'S ADVANCED DIAGNOSIS",
       content: [
-        "1. Never use 'will' in the 'If' clause (✗ If it will rain... → ✓ If it rains...).",
-        "2. Passive voice always requires the V3 (Past Participle) form.",
-        "3. Since vs For Moo-stake: Don't say 'since 2 hours'—use 'for 2 hours'!",
-        "4. In Reported Speech, 'today' must become 'that day' to be accurate."
+        "1. Never use 'will' in the 'If' clause (✗ If it will rain... → ✓ If it rains...). The 'if' clause stays in the present.",
+        "2. Passive voice always requires the V3 (Past Participle) form. No V3, no Passive!",
+        "3. Since vs For Moo-stake: Don't say 'since 2 hours'—use 'for 2 hours'! Since is a pinpoint on the map of time.",
+        "4. In Reported Speech, 'today' must become 'that day' to be accurate. We're time-travelers, not literalists!",
+        "5. Subjunctive Moo-rule: In Type 2 Conditionals, 'I was' becomes 'I were'. It's the language of dreams!",
+        "6. Question Backshift: In reported questions, the order flips back to normal. (✗ He asked where was I → ✓ He asked where I was)."
       ],
       type: 'list'
     }

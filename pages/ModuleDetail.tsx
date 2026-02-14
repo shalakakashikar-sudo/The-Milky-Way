@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Module, Section } from '../types';
 import { Button } from '../components/Button';
@@ -39,15 +40,13 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
     }
   };
 
-  // Keyboard navigation for 'Enter' key
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter') {
         e.preventDefault();
         if (activeSectionIdx < totalSections - 1) {
           nextSection();
-        } else if (hasQuiz) {
-          onStartQuiz();
         }
       }
       if (e.key === 'ArrowRight' && activeSectionIdx < totalSections - 1) {
@@ -60,7 +59,7 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeSectionIdx, totalSections, onStartQuiz, hasQuiz]);
+  }, [activeSectionIdx, totalSections]);
 
   const renderSectionContent = (section: Section) => {
     switch (section.type) {
@@ -240,11 +239,14 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
              <p className="text-[9px] font-black text-[#FF1493] uppercase tracking-widest mt-1">{activeSectionIdx + 1} / {totalSections}</p>
           </div>
 
-          {hasQuiz ? (
-            <button onClick={onStartQuiz} className="bg-[#FF1493] text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-strawberry hover:scale-105 active:scale-95 transition-all">START QUIZ ⚡</button>
-          ) : (
-            <div className="w-[100px]"></div>
-          )}
+          <div className="flex items-center gap-2">
+            {hasQuiz && (
+              <button onClick={onStartQuiz} className="hidden sm:block bg-[#FF1493] text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-strawberry hover:scale-105 active:scale-95 transition-all">QUIZ ⚡</button>
+            )}
+            {hasNextModule && (
+              <button onClick={onNextModule} className="bg-[#3D2B1F] text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-all">NEXT EPOCH 🐄</button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -264,10 +266,18 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
             
             {activeSectionIdx < totalSections - 1 ? (
               <button onClick={nextSection} className="w-full sm:w-auto px-12 py-3 rounded-2xl bg-[#3D2B1F] text-white font-black text-xs uppercase tracking-widest shadow-xl transition-all hover:bg-black active:scale-95">NEXT (ENTER) →</button>
-            ) : hasQuiz ? (
-              <button onClick={onStartQuiz} className="w-full sm:w-auto px-14 py-4 rounded-2xl bg-[#FF1493] text-white font-black text-sm uppercase tracking-widest shadow-strawberry transition-all hover:bg-[#D01077] active:scale-95">TEST YOUR SKILLS 🚀</button>
             ) : (
-              <button onClick={onBackToModules} className="w-full sm:w-auto px-14 py-4 rounded-2xl bg-[#3D2B1F] text-white font-black text-sm uppercase tracking-widest shadow-xl transition-all hover:bg-black active:scale-95">FINISH LESSON ✨</button>
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                {hasQuiz && (
+                  <button onClick={onStartQuiz} className="w-full sm:w-auto px-10 py-4 rounded-2xl bg-[#FF1493] text-white font-black text-xs uppercase tracking-widest shadow-strawberry transition-all hover:bg-[#D01077] active:scale-95">TEST YOUR SKILLS 🚀</button>
+                )}
+                {hasNextModule && (
+                  <button onClick={onNextModule} className="w-full sm:w-auto px-10 py-4 rounded-2xl bg-[#3D2B1F] text-white font-black text-xs uppercase tracking-widest shadow-xl transition-all hover:bg-black active:scale-95">NEXT MODULE 🐄</button>
+                )}
+                {!hasQuiz && !hasNextModule && (
+                  <button onClick={onBackToModules} className="w-full sm:w-auto px-14 py-4 rounded-2xl bg-[#3D2B1F] text-white font-black text-sm uppercase tracking-widest shadow-xl transition-all hover:bg-black active:scale-95">FINISH LESSON ✨</button>
+                )}
+              </div>
             )}
           </div>
         </div>
