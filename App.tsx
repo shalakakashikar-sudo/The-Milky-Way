@@ -31,6 +31,12 @@ const App: React.FC = () => {
     setMascotMessage(`Ah, ${module.title}. A fine choice!`);
   };
 
+  const handleQuickQuiz = (module: Module) => {
+    setSelectedModule(module);
+    navigateTo('module-quiz');
+    setMascotMessage("Jumping straight to the challenge? Bold choice!");
+  };
+
   const handleNextModule = () => {
     if (selectedModule) {
       const nextIdx = modules.findIndex(m => m.id === selectedModule.id) + 1;
@@ -65,7 +71,7 @@ const App: React.FC = () => {
       )}
       
       {currentPage === 'modules' && (
-        <ModulesPage onSelectModule={handleSelectModule} />
+        <ModulesPage onSelectModule={handleSelectModule} onQuickQuiz={handleQuickQuiz} />
       )}
 
       {currentPage === 'module-detail' && selectedModule && (
