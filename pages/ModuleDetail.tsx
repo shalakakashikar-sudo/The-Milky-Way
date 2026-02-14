@@ -67,7 +67,7 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
         return (
           <div className="flex flex-col items-center justify-center py-2">
             <p className="text-[12px] font-black text-pink-500 uppercase tracking-widest mb-4">The Magic Formula</p>
-            <div className="bg-[#3D2B1F] text-[#FFF9F0] p-8 md:p-12 rounded-[1.5rem] font-mono text-center text-2xl md:text-5xl shadow-xl border-t-4 border-pink-400/30 tracking-tighter leading-tight animate-float w-full max-w-4xl">
+            <div className="bg-[#3D2B1F] text-[#FFF9F0] p-8 md:p-12 rounded-[1.5rem] font-mono text-center text-2xl md:text-5xl shadow-xl border-t-4 border-pink-400/30 tracking-tighter leading-tight animate-float w-full max-w-5xl">
                {section.content}
             </div>
           </div>
@@ -89,9 +89,9 @@ export const ModuleDetail: React.FC<ModuleDetailProps> = ({
       case 'grid':
         if (section.data && Array.isArray(section.data.items)) {
           return (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 py-2">
+            <div className="flex flex-wrap justify-center gap-4 py-2">
               {section.data.items.map((item: any, i: number) => (
-                <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-pink-50 group hover:shadow-md transition-all">
+                <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-pink-50 group hover:shadow-md transition-all flex-1 min-w-[280px] max-w-[320px]">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-3xl p-2 bg-pink-50 rounded-lg">{item.icon || '🥛'}</span>
                     <h4 className="text-base md:text-lg font-black text-[#3D2B1F] uppercase tracking-tight">{item.label}</h4>
